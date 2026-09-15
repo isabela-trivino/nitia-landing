@@ -1,0 +1,138 @@
+/* ═════════════════════════════════════════════════════════════════════════
+   05 · UTILIDADES
+   Contenedor, rejillas, aparición al entrar en pantalla, accesibilidad
+   y el modo de la página. Va al final: puede pisar a los anteriores.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+/* ── Contenedor ──────────────────────────────────────────────────────── */
+.envoltura {
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.envoltura--estrecha { max-width: 52rem; }
+
+/* ── Rejillas ────────────────────────────────────────────────────────── */
+.rejilla { display: grid; gap: var(--e-5); }
+.rejilla--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rejilla--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.rejilla--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.rejilla--ancha { gap: var(--e-7); }
+
+@media (max-width: 900px) {
+  .rejilla--3, .rejilla--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .rejilla--2, .rejilla--3, .rejilla--4 { grid-template-columns: 1fr; }
+}
+
+/* ── Aparición al entrar en pantalla ─────────────────────────────────── */
+/* JavaScript solo añade data-visible="si" cuando el elemento entra en el
+   viewport; el movimiento lo hace el CSS. Si el script no llega a cargar,
+   la regla de respaldo de más abajo deja todo visible. */
+[data-aparece] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--dur-lenta) var(--curva-suave),
+              transform var(--dur-lenta) var(--curva-suave);
+  transition-delay: var(--retraso, 0ms);
+}
+[data-aparece][data-visible="si"] { opacity: 1; transform: none; }
+
+/* Respaldo: sin JavaScript no se oculta nada. */
+html:not(.js) [data-aparece] { opacity: 1; transform: none; }
+
+/* Escalonado: cada hijo entra 70 ms después del anterior. */
+.escalonado > * { --retraso: calc(var(--i, 0) * 70ms); }
+
+/* ── Accesibilidad ───────────────────────────────────────────────────── */
+.solo-lectores {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Salto al contenido: invisible hasta que el teclado lo enfoca. */
+.saltar {
+  position: absolute;
+  top: var(--e-3); left: var(--e-3);
+  z-index: 100;
+  padding: var(--e-3) var(--e-5);
+  background: var(--carbon);
+  color: var(--crema);
+  border-radius: var(--r-sm);
+  transform: translateY(-200%);
+  transition: transform var(--dur-media) var(--curva-salida);
+  background-image: none;
+}
+.saltar:focus-visible { transform: translateY(0); }
+
+/* ── Movimiento reducido ─────────────────────────────────────────────── */
+/* Quien lo pide en su sistema recibe la misma página, quieta. Importa
+   especialmente aquí: parte del público tiene hipersensibilidad sensorial. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+
+  /* Se anula el DESPLAZAMIENTO, no la retroalimentación. Quien pide menos
+     movimiento no pide quedarse sin saber que algo ha cambiado: el acordeón
+     tiene que seguir explicándose al abrirse, y el foco tiene que verse
+     llegar. Por eso aquí no hay un apagado global de transiciones. */
+
+  /* Nada de animaciones declaradas ni de desplazamientos. */
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  /* Las secciones aparecen ya puestas, sin subir desde abajo. */
+  [data-aparece] { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+  /* Los movimientos de adorno se quedan quietos. */
+  .boton:hover, .boton:active,
+  .tarjeta:hover, .pildora:hover, .marco:hover,
+  .tarjeta:hover .ficha { transform: none !important; }
+
+  /* Pero el color, el borde, la sombra y el foco SIGUEN transicionando:
+     son los que dicen «esto responde» y «estás aquí». */
+  .boton, .tarjeta, .pildora, .cabecera, .negacion,
+  .acordeon__cabeza, .formulario input[type="email"] {
+    transition-property: background-color, border-color, box-shadow, color !important;
+    transition-duration: var(--dur-rapida) !important;
+  }
+
+  /* El acordeón conserva su apertura, más breve: sin ella no se entiende
+     que se ha desplegado una respuesta. */
+  .acordeon__caja { transition-duration: var(--dur-rapida) !important; }
+  .acordeon__signo::before, .acordeon__signo::after { transition-duration: var(--dur-rapida) !important; }
+}
+
+/* ── Modo de la página ───────────────────────────────────────────────── */
+/* presentacion → tiendas y enlace a Instagram.
+   waitlist     → formulario de correo con consentimiento.
+   Se cambia en el atributo data-modo del <body>. */
+[data-modo="presentacion"] .solo-waitlist { display: none; }
+[data-modo="waitlist"]     .solo-presentacion { display: none; }
+
+/* ── Grano de papel ──────────────────────────────────────────────────── */
+/* 5 % de opacidad, fijo, sin capturar el ratón. Solo decorativo. */
+.grano {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* El PNG es ruido casi blanco (191–255). Sin modo de fusión, una imagen
+     clara encima de la página actúa de velo y lo lava todo: el Carbón se
+     vuelve gris. Con multiply, el blanco no hace nada y solo las motas
+     oscuras marcan el papel, que es justo el efecto buscado. */
+  mix-blend-mode: multiply;
+  opacity: .38;
+  /* PNG plano en vez de feTurbulence: ningún filtro que recalcular. */
+  background-image: url("../src/img/grano.png");
+  background-size: 128px 128px;
+}
+body > *:not(.grano):not(.saltar) { position: relative; z-index: 1; }

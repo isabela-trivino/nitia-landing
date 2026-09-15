@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esta página no existe — Nítia</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="src/img/logo/nitia-isotipo.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F7F4EE">
+
+<!-- TIPOGRAFÍA · autoalojada. Ver la explicación completa en index.html. -->
+<link rel="preload" href="src/fuentes/manrope-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="src/fuentes/lora-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="src/fuentes/fuentes.css?v=2026-09-15">
+
+<!-- Hojas modulares, en paralelo y en orden de cascada. -->
+<link rel="stylesheet" href="css/01-tokens.css?v=2026-09-15">
+<link rel="stylesheet" href="css/02-base.css?v=2026-09-15">
+<link rel="stylesheet" href="css/03-componentes.css?v=2026-09-15">
+<link rel="stylesheet" href="css/04-secciones.css?v=2026-09-15">
+<link rel="stylesheet" href="css/05-utilidades.css?v=2026-09-15">
+
+<style>
+  /* La 404 no tiene secciones: es una sola pantalla centrada. */
+  .perdido {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    text-align: center;
+    min-height: 78vh;
+    padding-block: var(--e-9);
+  }
+  .perdido__marca { width: 108px; margin-bottom: var(--e-7); opacity: .9; }
+  .perdido h1 { margin-bottom: var(--e-4); max-width: 16ch; }
+  .perdido p { max-width: 42ch; font-size: var(--t-md); color: var(--texto-medio); }
+  .perdido__acciones { display: flex; flex-wrap: wrap; gap: var(--e-3); justify-content: center; margin-top: var(--e-7); }
+</style>
+</head>
+
+<body data-modo="presentacion">
+<div class="grano" aria-hidden="true"></div>
+
+<header class="cabecera" data-fijada="si">
+  <div class="envoltura cabecera__fila">
+    <a class="marca" href="./" aria-label="Nítia — inicio">
+      <img src="src/img/logo/nitia-logo.svg" alt="" width="820" height="291">
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="perdido envoltura">
+    <img class="perdido__marca" src="src/img/logo/nitia-isotipo.svg"
+         alt="" aria-hidden="true" width="283" height="262">
+    <h1>Esta página no existe</h1>
+    <p>Puede que el enlace esté mal escrito, o que la página haya cambiado de
+       sitio. Desde el inicio se llega a todo.</p>
+    <div class="perdido__acciones">
+      <a class="boton" href="./">
+        Ir al inicio
+        <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h13M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a class="boton boton--fantasma" href="./#lanzamiento">Cuándo estará disponible</a>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="envoltura pie__inferior" style="border-top:0; padding-top:0">
+    <span>© 2026 Nítia</span>
+    <span><a href="legal/privacidad.html">Privacidad</a></span>
+  </div>
+</footer>
+
+<script src="src/js/microinteracciones.js?v=2026-09-15" defer></script>
+</body>
+</html>

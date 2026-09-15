@@ -1,0 +1,121 @@
+/* ═════════════════════════════════════════════════════════════════════════
+   02 · BASE
+   Reajuste del navegador, tipografía de partida, enlaces y foco.
+   Sin componentes: aquí solo viven los elementos desnudos.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;   /* deja aire bajo la cabecera pegada */
+}
+
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--texto);
+  font-family: var(--sans);
+  font-size: var(--t-base);
+  font-weight: var(--peso-ligero);
+  line-height: var(--alto-suelto);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;   /* los grafismos sangrados no generan barra lateral */
+}
+
+/* ── Titulares ───────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: var(--peso-medio);
+  line-height: var(--alto-apretado);
+  letter-spacing: var(--track-titular);
+  text-wrap: balance;      /* reparte las líneas sin dejar una palabra sola */
+  color: var(--texto);
+}
+h1 { font-size: var(--t-2xl); }
+h2 { font-size: var(--t-xl); }
+h3 { font-size: var(--t-lg); line-height: var(--alto-medio); }
+
+p {
+  margin: 0 0 var(--e-4);
+  text-wrap: pretty;
+  max-width: var(--ancho-texto);
+}
+p:last-child { margin-bottom: 0; }
+
+strong, b { font-weight: var(--peso-fuerte); color: var(--texto); }
+small { font-size: var(--t-sm); }
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+img, svg, video { display: block; max-width: 100%; height: auto; }
+
+/* ── Enlaces ─────────────────────────────────────────────────────────── */
+/* El subrayado crece desde la izquierda al pasar el ratón. Es la
+   microinteracción más barata que existe y la que más se nota. */
+a {
+  color: var(--petroleo);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size var(--dur-media) var(--curva-salida),
+              color var(--dur-rapida) var(--curva-salida);
+  padding-bottom: 1px;
+}
+a:hover { background-size: 100% 1px; }
+
+/* ── Foco ────────────────────────────────────────────────────────────── */
+/* Solo por teclado: el ratón no dibuja anillo. */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--petroleo);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* ── Formularios ─────────────────────────────────────────────────────── */
+input, button, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+
+::selection { background: var(--salvia); color: var(--carbon); }
+
+/* Manrope no tiene cursiva —no existe la familia itálica—, así que los <em>
+   se resuelven con la itálica de Lora, que sí es real y ya es de la marca.
+   La alternativa era una falsa cursiva generada por el navegador. */
+em, i, cite { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+/* ── El resto de superficies que pone el navegador ────────────────────── */
+/* Selección, cursor de escritura, texto de ayuda, viñetas y barra de
+   desplazamiento vienen con los colores de fábrica del navegador, que no
+   pertenecen a ningún sistema de diseño. Se visten desde la paleta. */
+html { caret-color: var(--petroleo); }
+::placeholder { color: var(--texto-tenue); opacity: 1; }   /* Firefox lo atenúa */
+::marker { color: var(--terracota); }
+:where(input, textarea, select) { accent-color: var(--petroleo); }
+
+/* Cifras de ancho fijo donde hay números: precios, fechas, pasos. */
+.precio b, .paso__numero, time { font-variant-numeric: tabular-nums; }
+
+@supports (scrollbar-color: auto) {
+  html { scrollbar-color: var(--filete-fuerte) transparent; scrollbar-width: thin; }
+}
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--filete-fuerte);
+    border: 3px solid var(--crema);
+    border-radius: var(--r-pill);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--texto-tenue); }
+}
+
+/* ── Ritmo vertical de las secciones ─────────────────────────────────── */
+section { padding-block: var(--aire-seccion); }

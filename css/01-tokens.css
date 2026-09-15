@@ -1,0 +1,118 @@
+/* ═════════════════════════════════════════════════════════════════════════
+   01 · TOKENS
+   Única fuente de verdad del sistema: color, tipografía, espaciado, curvas.
+   Ningún otro archivo escribe un valor literal de color o de tiempo.
+   Identidad: Brandbook Nítia v2.0 (DOC-2026-002), aprobado el 08-09-2026.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ── Color de marca ─────────────────────────────────────────────────── */
+  --carbon:     #3B3D3C;   /* texto, marca denominativa, superficies oscuras
+                              NO se enfría: es el valor del brandbook y está
+                              grabado dentro de nitia-logo.svg. Si se cambia
+                              aquí, la palabra «nítia» de la cabecera deja de
+                              coincidir con el texto que tiene al lado. */
+  --crema:      #F4F4F2;   /* fondo principal · hueso frío, sin amarillo */
+  --terracota:  #E09E86;   /* piedra izquierda del isotipo */
+  --lavanda:    #C0B7CF;   /* piedra derecha del isotipo */
+  --salvia:     #B1C6B3;   /* la luz del isotipo; confirma algo ya hecho */
+  --malva:      #B29598;   /* SOLO el solape del logotipo. Ver la nota de abajo */
+  --petroleo:   #1E4D52;   /* acción primaria · más profundo y saturado */
+  --arena:      #DCDCD7;   /* superficie secundaria · neutra, ya no beige */
+
+  /* El Malva está declarado por completitud del sistema, pero NO se usa en
+     esta página. Existe únicamente como resultado del solape de las dos
+     piedras dentro del logotipo: no es fondo, ni relleno, ni color de texto.
+     Con Carbón encima se queda en 3,98:1 y no alcanza AA. */
+
+  /* ── Color funcional ────────────────────────────────────────────────── */
+  --superficie:       #FAFAF9;  /* tarjetas y bloques elevados sobre el fondo */
+  --superficie-alta:  #FFFFFF;  /* estado elevado al pasar el ratón */
+  --texto:            var(--carbon);
+  --texto-medio:      #4E5457;  /* párrafos */
+  --texto-tenue:      #6B7275;  /* pies y texto secundario */
+  --texto-inverso:    var(--crema);
+  --filete:           #E2E3E1;
+  --filete-fuerte:    #C8CAC7;
+
+  /* ── Velos ──────────────────────────────────────────────────────────── */
+  /* Transparencias derivadas de las tintas base. Estaban escritas a mano
+     en los otros CSS, que contradecía la regla de este archivo: si alguien
+     cambiaba el Carbón aquí, aquellos se quedaban con el color viejo.
+     Se escriben en rgba() y no con color-mix() para que el valor sea
+     exactamente el mismo que había y nada se mueva de sitio. */
+  --velo-carbon-12:    rgba(59, 61, 60, .12);
+  --velo-carbon-18:    rgba(59, 61, 60, .18);
+  --velo-carbon-20:    rgba(59, 61, 60, .20);
+  --velo-carbon-22:    rgba(59, 61, 60, .22);
+  --velo-crema-14:     rgba(244, 244, 242, .14);
+  --velo-crema-22:     rgba(244, 244, 242, .22);
+  --velo-petroleo-18:  rgba(30, 77, 82, .18);
+  --velo-terracota-32: rgba(224, 158, 134, .32);
+  --velo-lavanda-36:   rgba(192, 183, 207, .36);
+
+  /* ── Tipografía ─────────────────────────────────────────────────────── */
+  --serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --sans:  'Manrope', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  /* Manrope no tiene cursiva: los <em> van en itálica de Lora. Ver 02-base.css. */
+
+  /* Escala mayor tercera (1,25) anclada en 17 px, fluida en los tamaños
+     grandes para que el titular no se desborde en móvil. */
+  --t-xs:   0.7647rem;   /* 13 px · rótulos en versalitas */
+  --t-sm:   0.8824rem;   /* 15 px · pies, etiquetas */
+  --t-base: 1rem;        /* 17 px · cuerpo */
+  --t-md:   1.1176rem;   /* 19 px · entradillas */
+  --t-lg:   clamp(1.29rem, 1.6vw, 1.47rem);   /* 22–25 px · h3 */
+  --t-xl:   clamp(1.65rem, 2.9vw, 2.18rem);   /* 28–37 px · h2 */
+  /* 33–45 px · h1. Bajado el 15-09-2026 desde clamp(2.05,4.4vw,2.88): a ese
+     tamaño el titular caía en 4 líneas en escritorio. Dos skills coinciden
+     en que un titular de héroe a 4 líneas es un error de cuerpo, no de
+     longitud del texto. Medido: 3 líneas a 768, 1280 y 1600 px. */
+  --t-2xl:  clamp(1.95rem, 4.0vw, 2.62rem);
+
+  --peso-ligero: 300;
+  --peso-normal: 400;
+  --peso-medio:  500;
+  --peso-fuerte: 600;
+
+  --alto-apretado: 1.14;   /* titulares */
+  --alto-medio:    1.32;   /* subtítulos */
+  --alto-suelto:   1.62;   /* cuerpo */
+
+  --track-titular:  -0.015em;
+  --track-versal:    0.16em;
+
+  /* ── Espaciado · escala de 4 px ─────────────────────────────────────── */
+  --e-1: 0.25rem;  --e-2: 0.5rem;   --e-3: 0.75rem;  --e-4: 1rem;
+  --e-5: 1.5rem;   --e-6: 2rem;     --e-7: 2.5rem;   --e-8: 3rem;
+  --e-9: 4rem;     --e-10: 5rem;    --e-11: 6.5rem;  --e-12: 8rem;
+
+  --aire-seccion: clamp(var(--e-9), 9vw, var(--e-12));  /* respiro vertical */
+
+  /* ── Retícula ───────────────────────────────────────────────────────── */
+  --ancho-max:   1120px;
+  --ancho-texto: 68ch;    /* medida de lectura cómoda */
+  --gutter:      clamp(1.25rem, 4vw, 2.5rem);
+
+  /* ── Radios ─────────────────────────────────────────────────────────── */
+  --r-sm: 8px;  --r-md: 14px;  --r-lg: 22px;  --r-pill: 999px;
+
+  /* ── Elevación ──────────────────────────────────────────────────────── */
+  --sombra-0: 0 1px 2px rgba(59,61,60,.04);
+  --sombra-1: 0 2px 4px rgba(59,61,60,.05), 0 1px 2px rgba(59,61,60,.04);
+  --sombra-2: 0 8px 20px rgba(59,61,60,.08), 0 2px 6px rgba(59,61,60,.05);
+  --sombra-3: 0 20px 48px rgba(59,61,60,.13), 0 4px 12px rgba(59,61,60,.07);
+
+  /* ── Movimiento ─────────────────────────────────────────────────────── */
+  /* Nivel acordado: medio. Transiciones breves al foco y al ratón, y
+     aparición suave de las secciones. Nada de parallax ni resortes.
+     Todo se anula bajo prefers-reduced-motion (ver 05-utilidades.css). */
+  --dur-rapida: 140ms;
+  --dur-media:  220ms;
+  --dur-lenta:  520ms;
+
+  --curva-salida:  cubic-bezier(.25, .46, .45, .94);  /* movimiento que frena */
+  --curva-suave:   cubic-bezier(.16, 1, .3, 1);       /* entrada, muy amortiguada */
+  --curva-tactil:  cubic-bezier(.34, 1.2, .64, 1);    /* devuelve al soltar */
+}

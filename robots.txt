@@ -1,0 +1,16 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  Nítia · nítia.app
+#  Mientras la página esté en revisión del Cliente, NADA se indexa.
+#  Para publicar de verdad: comentar la línea Disallow de abajo y
+#  descomentar las dos que la siguen.
+# ─────────────────────────────────────────────────────────────────────────
+
+User-agent: *
+Disallow: /
+
+# ── AL PUBLICAR, cambiar por esto ────────────────────────────────────────
+# User-agent: *
+# Allow: /
+# Disallow: /legal/
+
+Sitemap: https://xn--ntia-hpa.app/sitemap.xml
