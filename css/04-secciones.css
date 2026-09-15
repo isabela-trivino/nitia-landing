@@ -282,9 +282,90 @@
 }
 .negacion span { font-size: var(--t-sm); color: var(--arena); }
 
-/* ── 7 · Quién está detrás ───────────────────────────────────────────── */
-.detras .tarjeta { background: var(--crema); }
-.detras .tarjeta:hover { background: var(--superficie); }
+/* ── 3 · Quién está detrás ───────────────────────────────────────────── */
+/* Sección de confianza. Va justo después de «El momento» a propósito: el
+   lector acaba de reconocerse en una escena difícil, y lo siguiente que
+   necesita saber es quién responde de lo que va a leer. */
+.detras { background: var(--superficie); border-block: 1px solid var(--filete); }
+
+.detras__reticula {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  gap: clamp(var(--e-7), 5vw, var(--e-10));
+  align-items: start;
+}
+@media (max-width: 900px) { .detras__reticula { grid-template-columns: 1fr; gap: var(--e-8); } }
+
+/* ── La ficha de la persona ──────────────────────────────────────────── */
+.ficha-persona { margin: 0; }
+
+/* Marcador del retrato. Mismo criterio que el marco del móvil: se dice que
+   falta, no se simula una foto que nadie ha aprobado. */
+.ficha-persona__retrato {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--e-3);
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 1 / 1.08;
+  margin-bottom: var(--e-6);
+  background: var(--crema);
+  border: 1px solid var(--filete);
+  border-radius: var(--r-lg);
+  text-align: center;
+}
+.ficha-persona__filigrana { width: 58px; opacity: .38; }
+.ficha-persona__nota {
+  font-size: var(--t-xs);
+  line-height: 1.45;
+  letter-spacing: var(--track-versal);
+  text-transform: uppercase;
+  /* --texto-tenue se queda en 4,45:1 sobre este fondo: dos centésimas por
+     debajo del mínimo de AA. Medido, no estimado. */
+  color: var(--texto-medio);
+}
+
+.ficha-persona__nombre {
+  margin: 0 0 var(--e-1);
+  font-family: var(--serif);
+  font-size: var(--t-lg);
+  font-weight: var(--peso-medio);
+  color: var(--texto);
+}
+.ficha-persona__cargo {
+  margin: 0 0 var(--e-5);
+  font-size: var(--t-sm);
+  color: var(--petroleo);
+  font-weight: var(--peso-medio);
+}
+
+/* Los datos van en <dl>: no es decoración, es la estructura correcta para
+   pares de dato y valor, y los lectores de pantalla los anuncian ligados. */
+.ficha-persona__lista { margin: 0; }
+.ficha-persona__lista dt {
+  font-size: var(--t-xs);
+  letter-spacing: var(--track-versal);
+  text-transform: uppercase;
+  color: var(--texto-tenue);
+}
+.ficha-persona__lista dd {
+  margin: var(--e-1) 0 var(--e-4);
+  padding-bottom: var(--e-4);
+  border-bottom: 1px solid var(--filete);
+  font-size: var(--t-sm);
+  color: var(--texto-medio);
+}
+.ficha-persona__lista dd:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+
+/* ── Las tres notas de la derecha ────────────────────────────────────── */
+.detras__nota {
+  padding: var(--e-6) 0;
+  border-top: 1px solid var(--filete);
+}
+.detras__nota:last-child { border-bottom: 1px solid var(--filete); }
+.detras__nota h3 { margin-bottom: var(--e-2); font-size: var(--t-lg); }
+.detras__nota p { font-size: var(--t-sm); color: var(--texto-medio); line-height: 1.55; max-width: 54ch; }
 
 /* ── 8 · Lanzamiento ─────────────────────────────────────────────────── */
 .lanzamiento { background: var(--terracota); }
@@ -293,8 +374,11 @@
 /* El enlace del consentimiento también: en Petróleo sobre Terracota se queda
    en 3,30:1 y no alcanza AA. En Carbón sube a 4,91:1, y el subrayado es lo
    que lo sigue identificando como enlace sin recurrir al color. */
-.lanzamiento a { color: var(--carbon); text-decoration: underline; text-underline-offset: 3px; }
-.lanzamiento a:hover { color: var(--petroleo); text-decoration-thickness: 2px; }
+/* `:not(.boton)` NO es un adorno. Sin él esta regla pisaba el color del
+   botón —que es un <a>— y dejaba el texto en Carbón sobre el Petróleo del
+   fondo: ilegible. El botón trae su propia tinta en la variable --tinta. */
+.lanzamiento a:not(.boton) { color: var(--carbon); text-decoration: underline; text-underline-offset: 3px; }
+.lanzamiento a:not(.boton):hover { color: var(--petroleo); text-decoration-thickness: 2px; }
 .lanzamiento__reticula {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
