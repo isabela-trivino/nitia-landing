@@ -491,6 +491,25 @@
 .legal h3 { font-size: var(--t-md); margin: var(--e-6) 0 var(--e-2); }
 .legal ul { margin: var(--e-3) 0; padding-left: 1.2em; color: var(--texto-medio); }
 .legal li + li { margin-top: var(--e-2); }
+
+/* Texto justificado en las páginas legales (decisión de Isabela, 23-09-2026).
+   La partición silábica (hyphens, en castellano por el lang="es" del <html>)
+   evita los huecos grandes entre palabras en móvil. Los enlaces, el código y
+   las tablas no se parten ni se justifican. */
+.legal p,
+.legal li {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.legal a,
+.legal code { -webkit-hyphens: manual; hyphens: manual; }
+/* Las listas, al mismo ancho que los párrafos: justificadas, un borde
+   derecho distinto se nota mucho. */
+.legal ul { max-width: var(--ancho-texto); }
+.legal table p,
+.legal td,
+.legal th { text-align: left; }
 .legal code {
   font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
   font-size: .88em;
