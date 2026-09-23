@@ -267,6 +267,10 @@
 .noes h2, .noes h3 { color: var(--texto-inverso); }
 .noes .encabeza p { color: var(--arena); }
 
+/* En móvil las dos columnas se apilan y el hueco de la rejilla se sumaba al
+   relleno de cada fila: entre la 3.ª y la 4.ª negación quedaba el doble de
+   aire que entre las demás. Sin hueco vertical, el ritmo es el mismo. */
+.noes .rejilla { row-gap: 0; }
 .negacion {
   padding: var(--e-5) 0;
   border-top: 1px solid var(--velo-crema-14);
@@ -299,31 +303,25 @@
 /* ── La ficha de la persona ──────────────────────────────────────────── */
 .ficha-persona { margin: 0; }
 
-/* Marcador del retrato. Mismo criterio que el marco del móvil: se dice que
-   falta, no se simula una foto que nadie ha aprobado. */
+/* Retrato. Hoy lleva una imagen provisional (retrato-a-reemplazar.jpg, elegida
+   el 23-09-2026): iniciales de Ana y el isotipo, sin simular una foto. Cuando
+   llegue la foto real se sustituye el archivo, con el mismo nombre o
+   cambiando el src; ni el marcado ni este CSS necesitan tocarse. */
 .ficha-persona__retrato {
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: var(--e-3);
   width: 100%;
   max-width: 260px;
   aspect-ratio: 1 / 1.08;
   margin-bottom: var(--e-6);
+  overflow: hidden;
   background: var(--crema);
   border: 1px solid var(--filete);
   border-radius: var(--r-lg);
-  text-align: center;
 }
-.ficha-persona__filigrana { width: 58px; opacity: .38; }
-.ficha-persona__nota {
-  font-size: var(--t-xs);
-  line-height: 1.45;
-  letter-spacing: var(--track-versal);
-  text-transform: uppercase;
-  /* --texto-tenue se queda en 4,45:1 sobre este fondo: dos centésimas por
-     debajo del mínimo de AA. Medido, no estimado. */
-  color: var(--texto-medio);
+.ficha-persona__foto {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .ficha-persona__nombre {
@@ -391,18 +389,51 @@
 .lanzamiento__caja { max-width: 34rem; }
 .lanzamiento h2 { margin-bottom: var(--e-4); }
 
+/* Tarjeta de precio. Jerarquía: la oferta manda (cifras grandes), el precio
+   general acompaña en texto corrido, y prueba + IVA cierran. Todo sobre Crema,
+   así que el texto secundario va en --texto-medio: el --texto-tenue no llega
+   a AA sobre este fondo en cuerpos pequeños. */
 .precio {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--e-2);
-  padding: var(--e-4) var(--e-6);
+  display: grid;
+  gap: var(--e-1);
+  width: 100%;
+  max-width: 22rem;
+  padding: var(--e-5) var(--e-6);
   margin: var(--e-5) 0;
   background: var(--crema);
   border-radius: var(--r-md);
   box-shadow: var(--sombra-1);
 }
-.precio b { font-family: var(--serif); font-size: 2rem; font-weight: var(--peso-fuerte); }
+.precio p { margin: 0; color: var(--carbon); }
+/* Doble clase a propósito: `.lanzamiento p` (0,1,1) fija el Carbón en toda
+   la banda; con `.precio .x` (0,2,0) se gana por especificidad, sin forzar. */
+.precio .precio__rotulo {
+  margin-bottom: var(--e-2);
+  font-size: var(--t-sm);
+  line-height: 1.4;
+  color: var(--texto-medio);
+}
+.precio__fila { display: flex; align-items: baseline; gap: var(--e-2); }
+.precio b {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: var(--peso-fuerte);
+  line-height: 1.15;
+  /* Cifras proporcionales aquí, no tabulares: la regla general de 02-base
+     las pone tabulares para columnas, pero a 2rem en Lora abren la cifra
+     como si estuviera espaciada. Estas dos filas no se alinean en columna. */
+  font-variant-numeric: lining-nums proportional-nums;
+  letter-spacing: -0.01em;
+}
 .precio span { font-size: var(--t-sm); color: var(--texto-medio); }
+.precio .precio__general {
+  margin-top: var(--e-3);
+  padding-top: var(--e-3);
+  border-top: 1px solid var(--filete);
+  font-size: var(--t-sm);
+}
+.precio .precio__prueba { margin-top: var(--e-2); font-weight: var(--peso-medio); }
+.precio .precio__nota { font-size: var(--t-xs); color: var(--texto-medio); }
 .lanzamiento .pildora { background: var(--crema); border-color: var(--velo-carbon-12); }
 .lanzamiento__lado { display: grid; gap: var(--e-4); justify-items: start; }
 @media (max-width: 900px) { .lanzamiento__lado { margin-top: var(--e-2); } }
@@ -491,3 +522,83 @@
 .legal h2 { font-size: var(--t-lg); margin: var(--e-8) 0 var(--e-3); }
 .legal p { color: var(--texto-medio); }
 .legal__volver { display: inline-flex; align-items: center; gap: var(--e-2); margin-bottom: var(--e-7); }
+
+/* Texto largo de las páginas legales: subtítulos, listas y nombres técnicos.
+   Los nombres de cookie van en monoespaciada porque son identificadores
+   literales que hay que poder copiar tal cual, no adorno. */
+.legal h3 { font-size: var(--t-md); margin: var(--e-6) 0 var(--e-2); }
+.legal ul { margin: var(--e-3) 0; padding-left: 1.2em; color: var(--texto-medio); }
+.legal li + li { margin-top: var(--e-2); }
+.legal code {
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: .88em;
+  padding: .08em .35em;
+  background: var(--superficie);
+  border: 1px solid var(--filete);
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+/* Tablas de cookies. En pantalla ancha, tabla; en móvil, cada fila se apila
+   como una ficha y cada dato lleva su rótulo, para no obligar a desplazar
+   en horizontal. */
+.legal__tabla { margin: var(--e-3) 0 var(--e-5); }
+.legal__tabla table { width: 100%; border-collapse: collapse; font-size: var(--t-sm); }
+.legal__tabla th {
+  text-align: left;
+  font-weight: var(--peso-fuerte);
+  color: var(--texto);
+  padding: var(--e-2) var(--e-3) var(--e-2) 0;
+  border-bottom: 1px solid var(--filete-fuerte);
+}
+.legal__tabla td {
+  vertical-align: top;
+  padding: var(--e-3) var(--e-3) var(--e-3) 0;
+  border-bottom: 1px solid var(--filete);
+  color: var(--texto-medio);
+}
+@media (max-width: 640px) {
+  .legal__tabla thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .legal__tabla tr { display: block; padding: var(--e-3) 0; border-bottom: 1px solid var(--filete); }
+  .legal__tabla td { display: grid; grid-template-columns: 7.5rem 1fr; gap: var(--e-3); padding: var(--e-1) 0; border: 0; }
+  .legal__tabla td::before { content: attr(data-etiqueta); color: var(--texto); font-weight: var(--peso-medio); }
+}
+
+/* Datos del aviso legal. Mismo criterio que la ficha de la sección 3: pares
+   de dato y valor en <dl>, que los lectores de pantalla anuncian ligados.
+   En pantalla ancha, rótulo a la izquierda y valor a la derecha. */
+.legal__datos {
+  margin: var(--e-5) 0;
+  border-top: 1px solid var(--filete);
+}
+.legal__datos dt {
+  padding-top: var(--e-4);
+  font-size: var(--t-xs);
+  letter-spacing: var(--track-versal);
+  text-transform: uppercase;
+  /* --texto-medio y no --texto-tenue: sobre el fondo de página, el tenue a
+     13 px da 4,45:1 y no llega al 4,5 que pide WCAG AA. */
+  color: var(--texto-medio);
+}
+.legal__datos dd {
+  margin: var(--e-1) 0 0;
+  padding-bottom: var(--e-4);
+  border-bottom: 1px solid var(--filete);
+  color: var(--texto-medio);
+  overflow-wrap: anywhere;
+}
+@media (min-width: 640px) {
+  .legal__datos {
+    display: grid;
+    grid-template-columns: 12.5rem 1fr;   /* sin column-gap: así el filete
+                                             de cada fila es continuo */
+  }
+  .legal__datos dt { padding-right: var(--e-5); }
+  .legal__datos dt,
+  .legal__datos dd {
+    padding-block: var(--e-4);
+    border-bottom: 1px solid var(--filete);
+    margin: 0;
+  }
+  .legal__datos dt { line-height: 1.9; }
+}

@@ -159,6 +159,11 @@
   max-width: 18ch;
   margin: 0;
 }
+/* Con captura: la imagen ocupa toda la pantalla del marco. Sin relleno, sin
+   hueco y sin el velo de piedras del marcador, que taparía la interfaz. */
+.marco__pantalla--captura { display: block; padding: 0; background: var(--crema); }
+.marco__pantalla--captura::after { content: none; }
+.marco__captura { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 .marco--chico { width: min(196px, 62vw); border-radius: 28px; padding: 6px; }
 .marco--chico .marco__pantalla { border-radius: 23px; padding: var(--e-4); gap: var(--e-3); }
 .marco--chico .marco__filigrana { width: 46px; }
@@ -236,6 +241,9 @@
    ═════════════════════════════════════════════════════════════════════════ */
 @media (hover: hover) and (pointer: fine) {
   .boton:hover        { transform: translateY(-1px); }
+  /* Repetido aquí a propósito: fuera de este bloque, el :hover de arriba (misma
+     especificidad y declarado después) anulaba la pulsación en escritorio. */
+  .boton:active       { transform: scale(.97); }
   .boton:hover .flecha { transform: translateX(3px); }
   .tarjeta:hover      { transform: translateY(-3px); }
   .tarjeta:hover .ficha { transform: scale(1.06) rotate(-3deg); }

@@ -135,4 +135,11 @@ html:not(.js) [data-aparece] { opacity: 1; transform: none; }
   background-image: url("../src/img/grano.png");
   background-size: 128px 128px;
 }
-body > *:not(.grano):not(.saltar) { position: relative; z-index: 1; }
+/* El aviso y el panel de cookies quedan fuera: son fijos y se pintan encima
+   de todo. Sin esta exclusión, esta regla les quitaba el position: fixed. */
+body > *:not(.grano):not(.saltar):not(.aviso-cookies):not(.panel-cookies) { position: relative; z-index: 1; }
+
+/* [hidden] tiene que ganar siempre. Sin esto, cualquier regla de autor con
+   `display` (p. ej. los enlaces del pie, en inline-flex) resucita lo que el
+   JavaScript ha ocultado. */
+[hidden] { display: none !important; }

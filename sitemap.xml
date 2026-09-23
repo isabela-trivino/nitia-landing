@@ -1,33 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Nítia · mapa del sitio
-  El dominio va en punycode (xn--ntia-hpa.app) porque es lo que exige el
-  estándar de sitemaps para dominios con tilde.
+  Dominio: nitia.app, sin tilde (premisa de trabajo desde el 21-09-2026).
+  La marca se escribe Nítia; el dominio registrado no lleva tilde.
   ACTUALIZAR <lastmod> en cada publicación.
+  Las páginas legales no se listan: llevan noindex a propósito, y un mapa
+  del sitio no debe proponer páginas que piden no ser indexadas.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://xn--ntia-hpa.app/</loc>
-    <lastmod>2026-09-15</lastmod>
+    <loc>https://nitia.app/</loc>
+    <lastmod>2026-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://xn--ntia-hpa.app/legal/privacidad.html</loc>
-    <lastmod>2026-09-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://xn--ntia-hpa.app/legal/terminos.html</loc>
-    <lastmod>2026-09-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://xn--ntia-hpa.app/legal/cookies.html</loc>
-    <lastmod>2026-09-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
   </url>
 </urlset>

@@ -6,21 +6,32 @@
 
 <title>Nítia — Acompañamiento para cuidar con más calma</title>
 <meta name="description" content="Nítia acompaña a madres, padres y cuidadores con pasos concretos antes, durante y después del momento difícil. No hace falta diagnóstico. Próximamente en España.">
-<!-- El dominio se escribe «nítia.app» para las personas, pero canonical,
-     og:url y og:image lo llevan en punycode: es la forma que esperan los
-     rastreadores y los generadores de vista previa de WhatsApp o Instagram. -->
-<link rel="canonical" href="https://xn--ntia-hpa.app/">
+<!-- DOMINIO · premisa de trabajo desde el 21-09-2026: la MARCA se escribe
+     con tilde (Nítia) y el DOMINIO registrado va sin ella: nitia.app.
+     Sustituye a la versión anterior en punycode, que además estaba mal
+     calculada (xn--ntia-hpa; la forma correcta de nítia.app sería
+     xn--ntia-vpa). Si algún día se registra la variante con tilde, se
+     decide cuál es la canónica y se cambia aquí y en og:url. -->
+<link rel="canonical" href="https://nitia.app/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
-<meta property="og:url" content="https://xn--ntia-hpa.app/">
+<meta property="og:url" content="https://nitia.app/">
 <meta property="og:title" content="Nítia — Acompañamiento para cuidar con más calma">
 <meta property="og:description" content="Saber qué hacer cuando tu hijo se desborda. Y que cada vez pase menos.">
-<!-- PENDIENTE · imagen para compartir, 1200 × 630 px
-<meta property="og:image" content="https://xn--ntia-hpa.app/src/img/og.jpg"> -->
+<!-- Imagen para compartir (1200 × 630). Tiene que ser una dirección ABSOLUTA
+     que exista hoy: mientras la web viva en GitHub Pages apunta ahí. Cuando
+     se publique en nitia.app, cambiar las dos direcciones de imagen por
+     https://nitia.app/src/img/og.jpg -->
+<meta property="og:image" content="https://isabela-trivino.github.io/nitia-landing/src/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nítia: saber qué hacer cuando tu hijo se desborda. Móvil con la pantalla «Plan para este momento».">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://isabela-trivino.github.io/nitia-landing/src/img/og.jpg">
 
 <link rel="icon" href="src/img/logo/nitia-isotipo.svg" type="image/svg+xml">
-<meta name="theme-color" content="#F7F4EE">
+<meta name="theme-color" content="#F4F4F2">
 
 <!-- ══════════════════════════════════════════════════════════════════════
      TIPOGRAFÍA · autoalojada desde el 15-09-2026.
@@ -38,9 +49,10 @@
 <!-- Hojas modulares, en paralelo y en orden de cascada. -->
 <link rel="stylesheet" href="css/01-tokens.css?v=2026-09-15">
 <link rel="stylesheet" href="css/02-base.css?v=2026-09-15">
-<link rel="stylesheet" href="css/03-componentes.css?v=2026-09-15">
-<link rel="stylesheet" href="css/04-secciones.css?v=2026-09-15">
-<link rel="stylesheet" href="css/05-utilidades.css?v=2026-09-15">
+<link rel="stylesheet" href="css/03-componentes.css?v=2026-09-23b">
+<link rel="stylesheet" href="css/04-secciones.css?v=2026-09-23b">
+<link rel="stylesheet" href="css/05-utilidades.css?v=2026-09-22">
+<link rel="stylesheet" href="css/06-consentimiento.css?v=2026-09-22">
 </head>
 
 <body data-modo="presentacion">
@@ -109,12 +121,13 @@
 
     <div data-aparece style="--retraso:180ms; justify-self:center">
       <div class="marco">
-        <div class="marco__pantalla">
-          <!-- PENDIENTE · captura real. Cuando llegue:
-               <img src="src/img/capturas/inicio.png" alt="Pantalla de inicio de Nítia">
-               y se borra el marcador de abajo. Ver src/img/capturas/LEEME.md -->
-          <img loading="lazy" decoding="async" class="marco__filigrana" src="src/img/logo/nitia-isotipo.svg" alt="" aria-hidden="true" width="283" height="262">
-          <p class="marco__nota">Captura de la app<br>· pendiente ·</p>
+        <div class="marco__pantalla marco__pantalla--captura">
+          <!-- Mockup rehecho a partir de una captura real de la app (23-09-2026),
+               con los colores y la tipografía de la marca nueva. Ver
+               src/img/capturas/LEEME.md. Sin lazy: es la imagen del héroe. -->
+          <img class="marco__captura" src="src/img/capturas/heroe-plan-para-este-momento.jpg"
+               alt="Pantalla de Nítia «Plan para este momento»: primero, respirar; después, tres pasos concretos"
+               width="900" height="1838" decoding="async" fetchpriority="high">
         </div>
       </div>
     </div>
@@ -142,9 +155,9 @@
 </section>
 
 <!-- ══ 3 · Quién está detrás ════════════════════════════════════════
-     NINGÚN DATO DE ESTA SECCIÓN ESTÁ INVENTADO. Todo lo que va entre
-     corchetes y en cursiva lo tiene que rellenar el Cliente con la
-     titulación real y verificable de quien firma la dirección clínica.
+     NINGÚN DATO DE ESTA SECCIÓN ESTÁ INVENTADO. Nombre, titulación,
+     colegiación y trayectoria los aportó el Cliente (16 y 17-09-2026); el
+     número de colegiada se puede comprobar en el registro del COPC.
      Es la sección más delicada de la página: afirmar credenciales que no
      se pueden probar, en un producto de salud infantil, es un problema
      legal y de confianza, no una licencia de redacción.
@@ -154,7 +167,8 @@
     <div class="encabeza" data-aparece>
       <h2>Detrás de la app hay una profesional que responde</h2>
       <p>Nítia no es una recopilación de consejos de internet. Lo que la app te
-         propone pasa antes por dirección clínica.</p>
+         propone parte del criterio de una psicóloga colegiada que lleva más de
+         diez años trabajando con familias.</p>
     </div>
 
     <div class="detras__reticula">
@@ -162,25 +176,29 @@
       <!-- Ficha de la persona -->
       <figure class="ficha-persona" data-aparece>
         <div class="ficha-persona__retrato">
-          <!-- PENDIENTE · retrato real. Cuando llegue:
-               <img src="src/img/equipo/direccion-clinica.jpg" alt="[Nombre]">
-               y se borra el marcador. Formato recomendado: 800 × 800 px,
-               fondo neutro, mirada a cámara. -->
-          <img class="ficha-persona__filigrana" src="src/img/logo/nitia-isotipo.svg"
-               alt="" aria-hidden="true" width="283" height="262"
-               loading="lazy" decoding="async">
-          <span class="ficha-persona__nota">Retrato<br>· pendiente ·</span>
+          <!-- PROVISIONAL · imagen elegida el 23-09-2026 hasta que llegue la foto
+               real de Ana (foto real, fondo neutro, mirada a cámara, mínimo
+               800 px de ancho, proporción 1:1,08). Para cambiarla basta con
+               sustituir src/img/equipo/retrato-a-reemplazar.jpg.
+               alt vacío a propósito: el nombre ya lo dice el pie de la ficha y
+               la imagen provisional no añade información. Con la foto real,
+               alt="Retrato de Ana Cerrato Martínez". -->
+          <img class="ficha-persona__foto" src="src/img/equipo/retrato-a-reemplazar.jpg"
+               alt="" width="600" height="648" loading="lazy" decoding="async">
         </div>
         <figcaption class="ficha-persona__datos">
-          <p class="ficha-persona__nombre"><em>[Nombre y apellidos]</em></p>
-          <p class="ficha-persona__cargo">Dirección clínica de Nítia</p>
+          <!-- Datos confirmados por el Cliente (16 y 17-09-2026). Se presenta
+               como «psicóloga» y no como «dirección clínica»: es lo que acreditan
+               la titulación y la colegiación, ni más ni menos (decisión 22-09). -->
+          <p class="ficha-persona__nombre">Ana Cerrato Martínez</p>
+          <p class="ficha-persona__cargo">Psicóloga · dirige los contenidos de Nítia</p>
           <dl class="ficha-persona__lista">
             <dt>Titulación</dt>
-            <dd><em>[Titulación oficial, tal y como figura en el título]</em></dd>
+            <dd>Licenciada en Psicología</dd>
             <dt>Colegiada n.º</dt>
-            <dd><em>[Número de colegiada y colegio profesional]</em></dd>
+            <dd>18039 · Colegio Oficial de Psicología de Cataluña</dd>
             <dt>Trayectoria</dt>
-            <dd><em>[Años de ejercicio y ámbito de trabajo, en una línea]</em></dd>
+            <dd>Más de 10 años en neurodesarrollo infantil y acompañamiento a familias</dd>
           </dl>
         </figcaption>
       </figure>
@@ -188,7 +206,7 @@
       <!-- Qué implica, en tres tiempos -->
       <div class="detras__notas">
         <article class="detras__nota" data-aparece>
-          <h3>Qué significa que haya dirección clínica</h3>
+          <h3>Qué significa que la dirija una psicóloga</h3>
           <p>Que nada llega a tu pantalla sin pasar por el criterio de una
              profesional. Y que cuando algo conviene consultarlo en persona, la
              app te lo dice en vez de intentar resolverlo por su cuenta.</p>
@@ -310,23 +328,23 @@
     </div>
 
     <div class="comofunciona__marcos escalonado">
-      <!-- PENDIENTE · las tres capturas. Ver src/img/capturas/LEEME.md -->
+      <!-- Mockups rehechos a partir de capturas reales (23-09-2026). Ver src/img/capturas/LEEME.md -->
       <div class="marco marco--chico" data-aparece>
-        <div class="marco__pantalla">
-          <img loading="lazy" decoding="async" class="marco__filigrana" src="src/img/logo/nitia-isotipo.svg" alt="" aria-hidden="true" width="283" height="262">
-          <p class="marco__nota">Captura · pendiente</p>
+        <div class="marco__pantalla marco__pantalla--captura">
+          <img class="marco__captura" src="src/img/capturas/paso-1-cuestionario.jpg" alt="Pregunta del cuestionario inicial de Nítia: qué suele ocurrir antes de un conflicto"
+               width="900" height="1838" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="marco marco--chico" data-aparece>
-        <div class="marco__pantalla">
-          <img loading="lazy" decoding="async" class="marco__filigrana" src="src/img/logo/nitia-isotipo.svg" alt="" aria-hidden="true" width="283" height="262">
-          <p class="marco__nota">Captura · pendiente</p>
+        <div class="marco__pantalla marco__pantalla--captura">
+          <img class="marco__captura" src="src/img/capturas/paso-2-plan-de-hoy.jpg" alt="Pantalla de inicio de Nítia con el plan de hoy: dos tareas para el cuidador"
+               width="900" height="1838" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="marco marco--chico" data-aparece>
-        <div class="marco__pantalla">
-          <img loading="lazy" decoding="async" class="marco__filigrana" src="src/img/logo/nitia-isotipo.svg" alt="" aria-hidden="true" width="283" height="262">
-          <p class="marco__nota">Captura · pendiente</p>
+        <div class="marco__pantalla marco__pantalla--captura">
+          <img class="marco__captura" src="src/img/capturas/paso-3-esta-pasando-ahora.jpg" alt="Pantalla «Está pasando ahora» de Nítia: qué pasó justo antes"
+               width="900" height="1838" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -352,7 +370,7 @@
         <li>TEA, TDAH, retrasos del desarrollo o trastornos del lenguaje, con diagnóstico o sin él.</li>
       </ul>
       <ul class="listado" data-aparece style="--retraso:90ms">
-        <li>También para abuelos, familia extensa y cuidadores profesionales.</li>
+        <li>También para abuelos, familia extensa y cuidadores profesionales, siempre de acuerdo con los padres o con quien tenga la tutela.</li>
         <li>Pensada para las horas en las que no hay apoyo: las tardes, los fines de semana, las vacaciones.</li>
         <li>En español, con España como primer país.</li>
       </ul>
@@ -430,10 +448,27 @@
 
    <!-- Columna derecha: precio y tiendas. Equilibra la banda de color. -->
    <div class="lanzamiento__lado solo-presentacion" data-aparece style="--retraso:200ms">
+     <!-- PRECIO · confirmado por el Cliente el 21-09-2026.
+          24,95 € es lo que PAGA el cliente, IVA incluido (en las tiendas el
+          precio al consumidor siempre lo lleva; art. 60 TRLGDCU).
+          SIN precio tachado a propósito: la norma de reducciones de precio
+          toma como «precio anterior» el más bajo aplicado en los 30 días
+          previos, y 24,95 € no se ha aplicado nunca porque la app aún no está
+          a la venta. Por eso los dos precios se presentan como hechos, sin
+          «antes / ahora».
+          Precio de lanzamiento: SOLO el primer periodo de pago —primer mes o
+          primer año— para suscripciones antes del 31-12-2026 (22-09-2026). -->
      <div class="precio">
-       <b>25 €</b>
-       <!-- PENDIENTE · confirmar la periodicidad de la suscripción -->
-       <span><em>[al mes / al año]</em></span>
+       <p class="precio__rotulo">Precio de lanzamiento si te suscribes antes
+         del 31 de diciembre de 2026</p>
+       <p class="precio__fila"><b>19,95 €</b><span>el primer mes</span></p>
+       <p class="precio__fila"><b>199,95 €</b><span>el primer año</span></p>
+
+       <p class="precio__general">Después, 24,95 € al mes o
+         239,95 € al año.</p>
+
+       <p class="precio__prueba">Los primeros 30 días, gratis.</p>
+       <p class="precio__nota">IVA incluido.</p>
      </div>
      <div class="tiendas">
        <span class="pildora"><span class="punto"></span><b>Próximamente</b> en App Store</span>
@@ -485,8 +520,11 @@
         </button>
         <div class="acordeon__caja" id="p3">
           <div class="acordeon__interior">
-            <p>La suscripción es de 25 € <em>[al mes / al año]</em>. España es el
-               primer país; después llegará a Latinoamérica.</p>
+            <p>24,95 € al mes o 239,95 € al año, IVA incluido, y los
+               primeros 30 días son gratis. Si te suscribes antes del 31 de
+               diciembre de 2026, tu primer mes cuesta 19,95 € o tu primer
+               año 199,95 €; después se aplica el precio general. España es
+               el primer país; después llegará a Latinoamérica.</p>
           </div>
         </div>
       </div>
@@ -498,9 +536,14 @@
         </button>
         <div class="acordeon__caja" id="p4">
           <div class="acordeon__interior">
-            <!-- PENDIENTE · redactar con la política de privacidad definitiva -->
-            <p><em>[Qué datos se recogen, para qué, dónde se guardan y cómo se
-               eliminan. Responder con la política de privacidad publicada.]</em></p>
+            <!-- Resumen de la política de privacidad (legal/privacidad.html).
+                 Si aquella cambia, esta respuesta cambia con ella. -->
+            <p>Esta página no te pide ningún dato. En la app, lo que cuentas
+               sobre tu hijo lo introduces tú, se usa solo para acompañarte y no
+               se vende ni se cede a nadie con fines publicitarios. Se guarda en
+               servidores de la Unión Europea, y puedes descargarlo o borrarlo
+               cuando quieras.
+               <a href="legal/privacidad.html">Política de privacidad</a></p>
           </div>
         </div>
       </div>
@@ -514,7 +557,9 @@
           <div class="acordeon__interior">
             <p>No, y no pretende hacerlo. Nítia acompaña las horas en las que no
                hay nadie más, y te avisa cuando algo conviene consultarlo con un
-               profesional.</p>
+               profesional. Puedes acudir a quien tú elijas o reservar una cita
+               desde la app; Ana también atiende en consulta privada. Las
+               sesiones se hacen siempre fuera de la app y se pagan aparte.</p>
           </div>
         </div>
       </div>
@@ -526,8 +571,13 @@
         </button>
         <div class="acordeon__caja" id="p6">
           <div class="acordeon__interior">
-            <p>Sí. Abuelos, familia extensa y cuidadores profesionales pueden
-               usarla igual.</p>
+            <!-- Alineado con los términos (apartado 3): la cuenta la abre quien
+                 tiene la patria potestad o la tutela. Redacción del 23-09-2026. -->
+            <p>Nítia la usa la familia del niño: la cuenta la abre su madre, su
+               padre o quien tenga su tutela, porque son quienes deciden sobre su
+               información. Si eres su abuela, su tío, su canguro o su educadora,
+               lo más útil es que lo habléis con ellos y compartáis lo que os
+               funciona: puede ayudaros a ir en la misma dirección.</p>
           </div>
         </div>
       </div>
@@ -568,26 +618,100 @@
       <div>
         <h3>Legal y contacto</h3>
         <ul>
-          <li><a href="legal/privacidad.html">Política de privacidad</a></li>
+          <li><a href="legal/privacidad.html">Aviso legal y privacidad</a></li>
           <li><a href="legal/terminos.html">Términos de uso</a></li>
           <li><a href="legal/cookies.html">Cookies</a></li>
+          <li><a href="#" data-cookies="configurar">Configurar cookies</a></li>
           <li><a href="https://instagram.com/nitia.app" rel="noopener">Instagram</a></li>
-          <!-- PENDIENTE · correo real de contacto -->
-          <li><em>[correo de contacto]</em></li>
+          <li><a href="mailto:hola@nitia.app">hola@nitia.app</a></li>
         </ul>
       </div>
     </div>
 
     <div class="pie__inferior">
-      <!-- PENDIENTE · razón social -->
-      <span>© 2026 Nítia · <em>[razón social]</em></span>
+      <span>© 2026 Nítia · Ana Cerrato Martínez</span>
       <span>Hecho en España</span>
     </div>
   </div>
 </footer>
 
+<!-- ═════════════════════════════════════════════════════════════════════
+     COOKIES · aviso (primera capa) y panel de configuración
+     Solo aparecen si hay identificador en src/js/medicion.js.
+     Si se instala el píxel de Meta, se añade a «Publicidad» y a la
+     política de cookies.
+     ═════════════════════════════════════════════════════════════════════ -->
+
+<!-- Primera capa. No es modal: no bloquea la lectura de la página, pero
+     tampoco se carga nada de Google hasta que la persona decide. Sin botón
+     de cerrar: cerrar sin elegir no puede contar como aceptar. -->
+<!-- Se nombra la marca, no a la titular: la guía de la AEPD (2024) no exige
+     la denominación social en la primera capa si los datos completos están en
+     el aviso legal y la identidad se desprende del propio sitio (dominio y
+     marca coinciden: nitia.app / Nítia). Ambas cosas se cumplen. -->
+<section id="aviso-cookies" class="aviso-cookies" aria-labelledby="aviso-cookies-titulo" hidden>
+  <h2 id="aviso-cookies-titulo">Tu privacidad</h2>
+  <p>En Nítia queremos usar cookies de Google para dos cosas: <strong>medir</strong> cuántas personas visitan la
+     página y qué partes leen, y <strong>publicidad</strong>: saber si nuestros
+     anuncios funcionan y mostrarte anuncios de Nítia en otros sitios.</p>
+  <p>Recogen datos de navegación, como las páginas que visitas y el tipo de
+     dispositivo. Google puede tratarlos fuera de la Unión Europea. No se
+     activa nada hasta que decidas.
+     <a href="legal/cookies.html">Política de cookies</a></p>
+  <div class="aviso-cookies__acciones">
+    <button class="boton" type="button" data-cookies="rechazar">Rechazar</button>
+    <button class="boton" type="button" data-cookies="aceptar">Aceptar</button>
+    <button class="aviso-cookies__configurar" type="button" data-cookies="configurar">Configurar</button>
+  </div>
+</section>
+
+<!-- Panel de configuración. <dialog> nativo: gestiona el foco, se cierra
+     con Esc y el lector de pantalla lo anuncia como diálogo. Todo viene
+     DESMARCADO: nada premarcado es requisito, no preferencia. -->
+<dialog id="panel-cookies" class="panel-cookies" aria-labelledby="panel-cookies-titulo">
+  <div class="panel-cookies__cuerpo">
+    <h2 id="panel-cookies-titulo">Configurar cookies</h2>
+    <p class="panel-cookies__intro">Elige qué aceptas. Puedes cambiarlo cuando
+       quieras desde «Configurar cookies», al pie de cada página.</p>
+
+    <div class="categoria">
+      <h3>Necesarias</h3>
+      <span class="categoria__fija">Siempre activas</span>
+      <p>Guardan tu decisión sobre las cookies durante 12 meses, para no
+         preguntarte en cada visita. No te identifican y no salen de tu
+         navegador.</p>
+    </div>
+
+    <div class="categoria">
+      <h3><label for="cookies-analitica">Analítica</label></h3>
+      <input class="interruptor" type="checkbox" role="switch" id="cookies-analitica">
+      <p>Nos dicen cuántas personas visitan la página, desde dónde llegan, qué
+         secciones leen y qué preguntas abren. Proveedor: Google (Google
+         Analytics). Duración: 13 meses.</p>
+    </div>
+
+    <div class="categoria">
+      <h3><label for="cookies-publicidad">Publicidad</label></h3>
+      <input class="interruptor" type="checkbox" role="switch" id="cookies-publicidad">
+      <p>Sirven para saber si nuestros anuncios funcionan y para mostrarte
+         anuncios de Nítia en otros sitios. Si tienes abierta tu cuenta de
+         Google, Google puede relacionarlas con ella. Proveedor: Google
+         (Google Ads). Duración: hasta 13 meses.</p>
+    </div>
+  </div>
+
+  <div class="panel-cookies__acciones">
+    <button class="boton" type="button" data-cookies="rechazar">Rechazar todo</button>
+    <button class="boton" type="button" data-cookies="aceptar">Aceptar todo</button>
+    <button class="boton boton--fantasma boton--guardar" type="button" data-cookies="guardar">Guardar mi selección</button>
+  </div>
+</dialog>
+
 <script src="src/js/microinteracciones.js?v=2026-09-15" defer></script>
 <script src="src/js/modo.js?v=2026-09-15" defer></script>
-<script src="src/js/medicion.js?v=2026-09-15" defer></script>
+<!-- Orden obligatorio: medicion.js avisa de si la medición está activa
+     y consentimiento.js actúa en consecuencia. -->
+<script src="src/js/medicion.js?v=2026-09-22" defer></script>
+<script src="src/js/consentimiento.js?v=2026-09-22" defer></script>
 </body>
 </html>

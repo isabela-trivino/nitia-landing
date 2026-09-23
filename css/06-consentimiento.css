@@ -1,0 +1,175 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CONSENTIMIENTO DE COOKIES · aviso (primera capa) y panel de configuración
+   Usa los tokens de 01-tokens.css. Solo se ve si la medición está activa.
+
+   Regla que manda sobre todo lo demás: RECHAZAR CUESTA LO MISMO QUE
+   ACEPTAR. Mismo componente, mismo tamaño, mismo color, mismo número de
+   clics. Por eso «Rechazar» y «Aceptar» comparten la clase .boton sin
+   variantes, y el orden visual no premia a ninguno.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Primera capa: el aviso ────────────────────────────────────────────── */
+.aviso-cookies {
+  position: fixed;
+  z-index: 50;
+  inset: auto auto var(--e-5) var(--e-5);
+  width: min(30rem, calc(100vw - 2 * var(--e-5)));
+  padding: var(--e-6);
+  background: var(--superficie-alta);
+  border: 1px solid var(--filete);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sombra-3);
+  color: var(--texto);
+}
+.aviso-cookies[hidden] { display: none; }
+.aviso-cookies h2 {
+  margin: 0 0 var(--e-3);
+  font-family: var(--serif);
+  font-size: var(--t-lg);
+  font-weight: var(--peso-medio);
+  line-height: 1.25;
+}
+.aviso-cookies p {
+  margin: 0 0 var(--e-3);
+  font-size: var(--t-sm);
+  line-height: 1.6;
+  color: var(--texto-medio);
+}
+.aviso-cookies a { color: var(--petroleo); text-underline-offset: 3px; }
+
+.aviso-cookies__acciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--e-3);
+  margin-top: var(--e-5);
+}
+/* Los dos botones de decisión, idénticos. Se anula la sombra para que
+   ninguno parezca «más botón» que el otro. */
+.aviso-cookies__acciones .boton { width: 100%; justify-content: center; box-shadow: none; }
+
+/* Configurar: mismo alto táctil, pero como acción secundaria, a lo ancho.
+   La AEPD exige equivalencia entre aceptar y rechazar; configurar es la
+   tercera vía y no compite con ellas. */
+.aviso-cookies__configurar {
+  grid-column: 1 / -1;
+  min-height: 44px;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: var(--t-sm);
+  color: var(--petroleo);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .aviso-cookies {
+    inset: auto 0 0 0;
+    width: 100%;
+    padding: var(--e-5) var(--e-5) calc(var(--e-5) + env(safe-area-inset-bottom));
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    border-width: 1px 0 0;
+  }
+}
+
+/* ── Segunda vía: el panel de configuración ────────────────────────────── */
+.panel-cookies {
+  width: min(36rem, calc(100vw - 2 * var(--e-4)));
+  max-height: calc(100dvh - 2 * var(--e-4));
+  padding: 0;
+  background: var(--superficie-alta);
+  border: 1px solid var(--filete);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sombra-3);
+  color: var(--texto);
+}
+.panel-cookies::backdrop { background: var(--velo-carbon-22); }
+/* Abierto, el panel es una columna: el cuerpo se desplaza y los botones se
+   quedan siempre a la vista, también en un móvil pequeño. */
+.panel-cookies[open] { display: flex; flex-direction: column; }
+.panel-cookies__cuerpo { flex: 1 1 auto; min-height: 0; padding: var(--e-6); overflow-y: auto; }
+.panel-cookies h2 {
+  margin: 0 0 var(--e-3);
+  font-family: var(--serif);
+  font-size: var(--t-lg);
+  font-weight: var(--peso-medio);
+}
+.panel-cookies__intro { margin: 0 0 var(--e-5); font-size: var(--t-sm); color: var(--texto-medio); }
+
+.categoria {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--e-2) var(--e-4);
+  align-items: start;
+  padding: var(--e-4) 0;
+  border-top: 1px solid var(--filete);
+}
+.categoria h3 { margin: 0; font-size: var(--t-base); font-weight: var(--peso-fuerte); }
+.categoria p { grid-column: 1 / -1; margin: 0; font-size: var(--t-sm); line-height: 1.6; color: var(--texto-medio); }
+.categoria__fija { font-size: var(--t-xs); color: var(--texto-medio); letter-spacing: .02em; padding-top: 2px; }
+
+/* Interruptor accesible: es un checkbox real con role="switch", así que
+   funciona con teclado, lector de pantalla y sin JavaScript de adorno. */
+.interruptor {
+  appearance: none;
+  position: relative;
+  width: 48px; height: 28px;
+  margin: 0;
+  border-radius: var(--r-pill);
+  /* Apagado en --texto-tenue, no en un gris claro: un control necesita
+     3:1 contra su fondo (WCAG 1.4.11) y el gris de filete se queda en 1,6:1. */
+  background: var(--texto-tenue);
+  cursor: pointer;
+  transition: background-color .2s ease;
+}
+.interruptor::after {
+  content: "";
+  position: absolute; top: 3px; left: 3px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--superficie-alta);
+  box-shadow: var(--sombra-1);
+  transition: transform .2s cubic-bezier(.2,.8,.2,1);
+}
+.interruptor:checked { background: var(--petroleo); }
+.interruptor:checked::after { transform: translateX(20px); }
+.interruptor:focus-visible { outline: 2px solid var(--petroleo); outline-offset: 3px; }
+
+.panel-cookies__acciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--e-3);
+  padding: var(--e-5) var(--e-6);
+  border-top: 1px solid var(--filete);
+  background: var(--superficie);
+  border-radius: 0 0 var(--r-lg) var(--r-lg);
+}
+.panel-cookies__acciones .boton { width: 100%; justify-content: center; }
+/* Solo a los dos de decisión se les quita la sombra: la del fantasma es su
+   borde, y sin ella «Guardar» parecía texto suelto. */
+.panel-cookies__acciones .boton:not(.boton--fantasma) { box-shadow: none; }
+.panel-cookies__acciones .boton--guardar { grid-column: 1 / -1; }
+@media (max-width: 560px) {
+  .panel-cookies__cuerpo { padding: var(--e-5); }
+  .panel-cookies__acciones { padding: var(--e-4) var(--e-5); }
+  /* «Rechazar todo» y «Aceptar todo» en una sola línea también a 375 px:
+     si uno parte y el otro no, dejan de ser iguales a la vista. */
+  .panel-cookies__acciones .boton { padding-inline: var(--e-3); white-space: nowrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interruptor, .interruptor::after { transition: none; }
+}
+
+/* ── Estado de la decisión, en la página de cookies ──────────────────────── */
+.legal__estado {
+  margin: var(--e-5) 0;
+  padding: var(--e-4) var(--e-5);
+  background: var(--superficie);
+  border: 1px solid var(--filete);
+  border-radius: var(--r-md);
+  color: var(--texto-medio);
+}
+.legal__estado p { margin: 0; }
+.legal__estado p + p { margin-top: var(--e-3); }

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cookies — Nítia</title>
-<meta name="robots" content="noindex"><!-- Quitar cuando el texto sea el definitivo -->
+<title>Política de cookies — Nítia</title>
+<meta name="robots" content="noindex"><!-- Se deja a propósito: las páginas legales no necesitan aparecer en buscadores -->
 <link rel="icon" href="../src/img/logo/nitia-isotipo.svg" type="image/svg+xml">
 <!-- TIPOGRAFÍA · autoalojada. Ver la explicación completa en index.html. -->
 <link rel="preload" href="../src/fuentes/manrope-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -14,9 +14,10 @@
 <!-- Hojas modulares, en paralelo y en orden de cascada. -->
 <link rel="stylesheet" href="../css/01-tokens.css?v=2026-09-15">
 <link rel="stylesheet" href="../css/02-base.css?v=2026-09-15">
-<link rel="stylesheet" href="../css/03-componentes.css?v=2026-09-15">
-<link rel="stylesheet" href="../css/04-secciones.css?v=2026-09-15">
-<link rel="stylesheet" href="../css/05-utilidades.css?v=2026-09-15">
+<link rel="stylesheet" href="../css/03-componentes.css?v=2026-09-23b">
+<link rel="stylesheet" href="../css/04-secciones.css?v=2026-09-23b">
+<link rel="stylesheet" href="../css/05-utilidades.css?v=2026-09-22">
+<link rel="stylesheet" href="../css/06-consentimiento.css?v=2026-09-22">
 </head>
 <body data-modo="presentacion">
 <div class="grano" aria-hidden="true"></div>
@@ -38,37 +39,209 @@
     Volver a la página principal
   </a>
 
-  <h1>Cookies</h1>
-  <p><em>Última actualización: [fecha].</em></p>
 
-  <div style="background:var(--superficie); border:1px solid var(--filete); border-radius:var(--r-md); padding:var(--e-5); margin:var(--e-6) 0">
-    <p style="margin:0"><strong>Hoy esta página no usa cookies.</strong> La medición está
-    instalada pero apagada: mientras el identificador de Google Analytics esté vacío, no se
-    carga ningún recurso de Google y no se envía ningún dato. Por eso no hay aviso de
-    cookies todavía.</p>
+  <h1>Política de cookies</h1>
+  <p><em>Última actualización: 22 de septiembre de 2026.</em></p>
+
+  <!-- Este bloque lo rellena consentimiento.js con la situación real de
+       cada visitante. Si JavaScript no está disponible, queda este texto. -->
+  <div class="legal__estado">
+    <p data-estado-cookies>Sin JavaScript activo, este sitio no usa cookies de
+    analítica ni de publicidad.</p>
+    <p data-cookies-envoltura><a href="#" data-cookies="configurar">Cambiar mi decisión</a></p>
   </div>
 
-  <h2>1 · Cuándo dejará de ser así</h2>
-  <p>En cuanto se active Google Analytics 4, esta página pasará a instalar cookies de
-  medición. A partir de ese momento harán falta dos cosas: <strong>un aviso de cookies con
-  consentimiento previo</strong> —no vale la barra que solo informa— y el detalle de cada
-  cookie en la tabla de abajo.</p>
+  <h2>1 · Qué son las cookies</h2>
+  <p>Son pequeños archivos que una web guarda en tu navegador para reconocerlo en
+  visitas posteriores. Aquí también usamos una tecnología parecida, el
+  almacenamiento local del navegador. En esta política las llamamos a todas
+  «cookies».</p>
 
-  <h2>2 · Cookies que se usarán</h2>
-  <p><em>[Tabla con nombre, proveedor, finalidad y caducidad de cada cookie. Rellenar al
-  activar la medición.]</em></p>
+  <h2>2 · Quién las usa</h2>
+  <p>Ana Cerrato Martínez, titular de este sitio, con los datos que figuran en el
+  <a href="privacidad.html">aviso legal</a>, y Google, como proveedor de las
+  herramientas de medición y publicidad.</p>
 
-  <h2>3 · Cómo gestionarlas</h2>
-  <p><em>[Cómo revocar el consentimiento y cómo bloquearlas desde el navegador.]</em></p>
+  <h2>3 · Cuándo se usan</h2>
+  <p><strong>Ninguna antes de que decidas.</strong> Mientras no respondas al
+  aviso, o si rechazas, no se carga nada de Google y solo se guarda tu decisión
+  para no volver a preguntarte en cada visita.</p>
+
+  <h2>4 · Qué cookies usamos</h2>
+
+  <h3>Necesarias · siempre activas</h3>
+  <div class="legal__tabla">
+  <table>
+    <thead><tr><th>Nombre</th><th>Titular</th><th>Para qué sirve</th><th>Duración</th></tr></thead>
+    <tbody>
+      <tr><td data-etiqueta="Nombre"><code>nitia-consentimiento</code></td><td data-etiqueta="Titular">Nítia (propia)</td>
+          <td data-etiqueta="Para qué sirve">Guardar tu decisión sobre las cookies. Es almacenamiento local, no sale de tu navegador</td>
+          <td data-etiqueta="Duración">12 meses</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Analítica · solo si la aceptas</h3>
+  <div class="legal__tabla">
+  <table>
+    <thead><tr><th>Nombre</th><th>Titular</th><th>Para qué sirve</th><th>Duración</th></tr></thead>
+    <tbody>
+      <tr><td data-etiqueta="Nombre"><code>_ga</code></td><td data-etiqueta="Titular">Google (de tercero, guardada en este dominio)</td>
+          <td data-etiqueta="Para qué sirve">Distinguir un navegador de otro para contar visitas</td>
+          <td data-etiqueta="Duración">13 meses desde la primera visita</td></tr>
+      <tr><td data-etiqueta="Nombre"><code>_ga_&lt;identificador&gt;</code></td><td data-etiqueta="Titular">Google (de tercero, guardada en este dominio)</td>
+          <td data-etiqueta="Para qué sirve">Mantener el estado de la visita</td>
+          <td data-etiqueta="Duración">13 meses desde la primera visita</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Publicidad · solo si la aceptas</h3>
+  <p>Con la publicidad aceptada se activan las señales de Google: si tienes
+  abierta tu cuenta de Google, Google puede relacionar tu visita con ella para
+  medir y personalizar anuncios. Cuando se active la publicidad en Google Ads,
+  podrán usarse además:</p>
+  <div class="legal__tabla">
+  <table>
+    <thead><tr><th>Nombre</th><th>Titular</th><th>Para qué sirve</th><th>Duración</th></tr></thead>
+    <tbody>
+      <tr><td data-etiqueta="Nombre"><code>_gcl_au</code></td><td data-etiqueta="Titular">Google (de tercero, guardada en este dominio)</td>
+          <td data-etiqueta="Para qué sirve">Medir si un anuncio acaba en una suscripción</td><td data-etiqueta="Duración">90 días</td></tr>
+      <tr><td data-etiqueta="Nombre"><code>_gcl_aw</code></td><td data-etiqueta="Titular">Google (de tercero, guardada en este dominio)</td>
+          <td data-etiqueta="Para qué sirve">Recordar que llegaste desde un anuncio de Google. Solo en ese caso</td><td data-etiqueta="Duración">90 días</td></tr>
+      <tr><td data-etiqueta="Nombre"><code>IDE</code></td><td data-etiqueta="Titular">Google (doubleclick.net)</td>
+          <td data-etiqueta="Para qué sirve">Mostrar anuncios personalizados y medirlos</td><td data-etiqueta="Duración">13 meses</td></tr>
+      <tr><td data-etiqueta="Nombre"><code>test_cookie</code></td><td data-etiqueta="Titular">Google (doubleclick.net)</td>
+          <td data-etiqueta="Para qué sirve">Comprobar si tu navegador acepta cookies</td><td data-etiqueta="Duración">15 minutos</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>5 · Con quién se comparten</h2>
+  <p>Con Google. Para la analítica, Google trata los datos por cuenta de Nítia.
+  Con la publicidad y las señales de Google, Google puede usarlos también para
+  sus propios fines, según su política de privacidad. Puedes consultar
+  <a href="https://policies.google.com/technologies/partner-sites?hl=es" rel="noopener">cómo
+  usa Google la información de los sitios que utilizan sus servicios</a>.</p>
+  <p>Google puede tratar los datos en Estados Unidos. Estas transferencias se
+  amparan en la decisión de adecuación de la Comisión Europea sobre el Marco de
+  Privacidad de Datos UE–EE. UU., en el que Google LLC está certificada, y,
+  cuando no sea aplicable, en las cláusulas contractuales tipo aprobadas por la
+  Comisión Europea.</p>
+
+  <h2>6 · Cómo aceptar, rechazar o cambiar de opinión</h2>
+  <p>La primera vez que entras te preguntamos con un aviso: puedes aceptar,
+  rechazar o elegir por categorías. Rechazar cuesta lo mismo que aceptar, y nada
+  viene marcado de antemano.</p>
+  <p>Puedes cambiar tu decisión cuando quieras con el enlace «Configurar
+  cookies» del pie de cada página. Si retiras el permiso, borramos las cookies
+  de Google que se hubieran guardado.</p>
+
+  <h2>7 · Cómo borrarlas desde el navegador</h2>
+  <p>También puedes bloquearlas o borrarlas desde tu navegador:</p>
+  <ul>
+    <li><a href="https://support.google.com/chrome/answer/95647?hl=es" rel="noopener">Google Chrome</a></li>
+    <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" rel="noopener">Safari</a></li>
+    <li><a href="https://support.mozilla.org/es/kb/Borrar%20cookies" rel="noopener">Mozilla Firefox</a></li>
+    <li><a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" rel="noopener">Microsoft Edge</a></li>
+  </ul>
+
+  <h2>8 · Cuánto tiempo se conservan</h2>
+  <p>Las cookies de analítica duran como máximo 13 meses desde tu primera visita
+  y no se alargan con las siguientes. Las publicitarias de Google en este
+  dominio, 90 días. Tu decisión sobre las cookies, 12 meses: pasado ese tiempo
+  te volveremos a preguntar. En Google Analytics, los datos vinculados a tu
+  navegador se conservan 14 meses; después solo quedan estadísticas agregadas,
+  que no permiten identificar a nadie.</p>
+
+  <h2>9 · Cambios en esta política</h2>
+  <p>Si cambian las cookies que usamos o para qué las usamos, actualizaremos esta
+  página y te volveremos a preguntar.</p>
 </main>
 
 <footer class="pie">
   <div class="envoltura">
     <div class="pie__inferior" style="border:0; padding-top:0">
-      <span>© 2026 Nítia · <em>[razón social]</em></span>
-      <span><a href="../index.html">Volver a Nítia</a></span>
+      <span>© 2026 Nítia · Ana Cerrato Martínez</span>
+      <span><span data-cookies-envoltura><a href="#" data-cookies="configurar">Configurar cookies</a> · </span><a href="../index.html">Volver a Nítia</a></span>
     </div>
   </div>
 </footer>
+<!-- ═════════════════════════════════════════════════════════════════════
+     COOKIES · aviso (primera capa) y panel de configuración
+     Solo aparecen si hay identificador en src/js/medicion.js.
+     Si se instala el píxel de Meta, se añade a «Publicidad» y a la
+     política de cookies.
+     ═════════════════════════════════════════════════════════════════════ -->
+
+<!-- Primera capa. No es modal: no bloquea la lectura de la página, pero
+     tampoco se carga nada de Google hasta que la persona decide. Sin botón
+     de cerrar: cerrar sin elegir no puede contar como aceptar. -->
+<!-- Se nombra la marca, no a la titular: la guía de la AEPD (2024) no exige
+     la denominación social en la primera capa si los datos completos están en
+     el aviso legal y la identidad se desprende del propio sitio (dominio y
+     marca coinciden: nitia.app / Nítia). Ambas cosas se cumplen. -->
+<section id="aviso-cookies" class="aviso-cookies" aria-labelledby="aviso-cookies-titulo" hidden>
+  <h2 id="aviso-cookies-titulo">Tu privacidad</h2>
+  <p>En Nítia queremos usar cookies de Google para dos cosas: <strong>medir</strong> cuántas personas visitan la
+     página y qué partes leen, y <strong>publicidad</strong>: saber si nuestros
+     anuncios funcionan y mostrarte anuncios de Nítia en otros sitios.</p>
+  <p>Recogen datos de navegación, como las páginas que visitas y el tipo de
+     dispositivo. Google puede tratarlos fuera de la Unión Europea. No se
+     activa nada hasta que decidas.
+     <a href="cookies.html">Política de cookies</a></p>
+  <div class="aviso-cookies__acciones">
+    <button class="boton" type="button" data-cookies="rechazar">Rechazar</button>
+    <button class="boton" type="button" data-cookies="aceptar">Aceptar</button>
+    <button class="aviso-cookies__configurar" type="button" data-cookies="configurar">Configurar</button>
+  </div>
+</section>
+
+<!-- Panel de configuración. <dialog> nativo: gestiona el foco, se cierra
+     con Esc y el lector de pantalla lo anuncia como diálogo. Todo viene
+     DESMARCADO: nada premarcado es requisito, no preferencia. -->
+<dialog id="panel-cookies" class="panel-cookies" aria-labelledby="panel-cookies-titulo">
+  <div class="panel-cookies__cuerpo">
+    <h2 id="panel-cookies-titulo">Configurar cookies</h2>
+    <p class="panel-cookies__intro">Elige qué aceptas. Puedes cambiarlo cuando
+       quieras desde «Configurar cookies», al pie de cada página.</p>
+
+    <div class="categoria">
+      <h3>Necesarias</h3>
+      <span class="categoria__fija">Siempre activas</span>
+      <p>Guardan tu decisión sobre las cookies durante 12 meses, para no
+         preguntarte en cada visita. No te identifican y no salen de tu
+         navegador.</p>
+    </div>
+
+    <div class="categoria">
+      <h3><label for="cookies-analitica">Analítica</label></h3>
+      <input class="interruptor" type="checkbox" role="switch" id="cookies-analitica">
+      <p>Nos dicen cuántas personas visitan la página, desde dónde llegan, qué
+         secciones leen y qué preguntas abren. Proveedor: Google (Google
+         Analytics). Duración: 13 meses.</p>
+    </div>
+
+    <div class="categoria">
+      <h3><label for="cookies-publicidad">Publicidad</label></h3>
+      <input class="interruptor" type="checkbox" role="switch" id="cookies-publicidad">
+      <p>Sirven para saber si nuestros anuncios funcionan y para mostrarte
+         anuncios de Nítia en otros sitios. Si tienes abierta tu cuenta de
+         Google, Google puede relacionarlas con ella. Proveedor: Google
+         (Google Ads). Duración: hasta 13 meses.</p>
+    </div>
+  </div>
+
+  <div class="panel-cookies__acciones">
+    <button class="boton" type="button" data-cookies="rechazar">Rechazar todo</button>
+    <button class="boton" type="button" data-cookies="aceptar">Aceptar todo</button>
+    <button class="boton boton--fantasma boton--guardar" type="button" data-cookies="guardar">Guardar mi selección</button>
+  </div>
+</dialog>
+
+<!-- Las páginas legales también llevan el aviso: se puede llegar a ellas
+     directamente desde un buscador o un enlace. -->
+<script src="../src/js/medicion.js?v=2026-09-22" defer></script>
+<script src="../src/js/consentimiento.js?v=2026-09-22" defer></script>
 </body>
 </html>
