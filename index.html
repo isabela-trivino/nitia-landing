@@ -50,12 +50,12 @@
 <link rel="stylesheet" href="css/01-tokens.css?v=2026-09-15">
 <link rel="stylesheet" href="css/02-base.css?v=2026-09-15">
 <link rel="stylesheet" href="css/03-componentes.css?v=2026-09-23b">
-<link rel="stylesheet" href="css/04-secciones.css?v=2026-09-23b">
-<link rel="stylesheet" href="css/05-utilidades.css?v=2026-09-22">
+<link rel="stylesheet" href="css/04-secciones.css?v=2026-09-23c">
+<link rel="stylesheet" href="css/05-utilidades.css?v=2026-09-23">
 <link rel="stylesheet" href="css/06-consentimiento.css?v=2026-09-22">
 </head>
 
-<body data-modo="presentacion">
+<body>
 <div class="grano" aria-hidden="true"></div>
 
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -388,7 +388,7 @@
 
     <div class="rejilla rejilla--2 rejilla--ancha">
       <div data-aparece>
-        <div class="negacion"><b>No diagnostica</b><span>No sustituye una valoración profesional ni la reemplaza.</span></div>
+        <div class="negacion"><b>No diagnostica</b><span>No sustituye una valoración profesional.</span></div>
         <div class="negacion"><b>No es terapia ni tratamiento</b><span>Es una guía práctica para el día a día.</span></div>
         <div class="negacion"><b>No sustituye al profesional</b><span>Cuando conviene consultar, te lo dice.</span></div>
       </div>
@@ -407,8 +407,7 @@
    <div class="lanzamiento__caja">
     <h2 data-aparece style="--retraso:60ms">Nítia llega pronto a España</h2>
 
-    <!-- ── Modo presentación · activo ──────────────────────────────── -->
-    <div class="solo-presentacion" data-aparece style="--retraso:130ms">
+    <div data-aparece style="--retraso:130ms">
       <p>Estará disponible en App Store y Google Play. Mientras tanto, puedes
          seguir la cuenta atrás en Instagram.</p>
 
@@ -422,32 +421,10 @@
         </a>
       </p>
     </div>
-
-    <!-- ── Modo lista de espera · oculto ───────────────────────────────
-         Se activa cambiando data-modo en el <body>. Antes hacen falta la
-         política de privacidad publicada y un destino para los correos:
-         el atributo action está vacío a propósito. -->
-    <div class="solo-waitlist">
-      <p>Déjanos tu correo y te avisamos el día que Nítia esté disponible.</p>
-
-      <form class="formulario" action="" method="post">
-        <label class="solo-lectores" for="correo">Tu correo electrónico</label>
-        <input id="correo" name="correo" type="email" required
-               autocomplete="email" placeholder="tu@correo.com">
-        <button class="boton" type="submit">Avísame</button>
-      </form>
-
-      <p class="consentimiento">
-        <input id="acepto" name="acepto" type="checkbox" required>
-        <label for="acepto">Acepto que Nítia guarde mi correo para avisarme del
-          lanzamiento. Puedo darme de baja cuando quiera.
-          <a href="legal/privacidad.html">Política de privacidad</a>.</label>
-      </p>
-    </div>
    </div>
 
    <!-- Columna derecha: precio y tiendas. Equilibra la banda de color. -->
-   <div class="lanzamiento__lado solo-presentacion" data-aparece style="--retraso:200ms">
+   <div class="lanzamiento__lado" data-aparece style="--retraso:200ms">
      <!-- PRECIO · confirmado por el Cliente el 21-09-2026.
           24,95 € es lo que PAGA el cliente, IVA incluido (en las tiendas el
           precio al consumidor siempre lo lleva; art. 60 TRLGDCU).
@@ -708,7 +685,6 @@
 </dialog>
 
 <script src="src/js/microinteracciones.js?v=2026-09-15" defer></script>
-<script src="src/js/modo.js?v=2026-09-15" defer></script>
 <!-- Orden obligatorio: medicion.js avisa de si la medición está activa
      y consentimiento.js actúa en consecuencia. -->
 <script src="src/js/medicion.js?v=2026-09-22" defer></script>

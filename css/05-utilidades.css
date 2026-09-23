@@ -1,7 +1,7 @@
 /* ═════════════════════════════════════════════════════════════════════════
    05 · UTILIDADES
-   Contenedor, rejillas, aparición al entrar en pantalla, accesibilidad
-   y el modo de la página. Va al final: puede pisar a los anteriores.
+   Contenedor, rejillas, aparición al entrar en pantalla y accesibilidad.
+   Va al final: puede pisar a los anteriores.
    ═════════════════════════════════════════════════════════════════════════ */
 
 /* ── Contenedor ──────────────────────────────────────────────────────── */
@@ -100,7 +100,7 @@ html:not(.js) [data-aparece] { opacity: 1; transform: none; }
   /* Pero el color, el borde, la sombra y el foco SIGUEN transicionando:
      son los que dicen «esto responde» y «estás aquí». */
   .boton, .tarjeta, .pildora, .cabecera, .negacion,
-  .acordeon__cabeza, .formulario input[type="email"] {
+  .acordeon__cabeza {
     transition-property: background-color, border-color, box-shadow, color !important;
     transition-duration: var(--dur-rapida) !important;
   }
@@ -110,13 +110,6 @@ html:not(.js) [data-aparece] { opacity: 1; transform: none; }
   .acordeon__caja { transition-duration: var(--dur-rapida) !important; }
   .acordeon__signo::before, .acordeon__signo::after { transition-duration: var(--dur-rapida) !important; }
 }
-
-/* ── Modo de la página ───────────────────────────────────────────────── */
-/* presentacion → tiendas y enlace a Instagram.
-   waitlist     → formulario de correo con consentimiento.
-   Se cambia en el atributo data-modo del <body>. */
-[data-modo="presentacion"] .solo-waitlist { display: none; }
-[data-modo="waitlist"]     .solo-presentacion { display: none; }
 
 /* ── Grano de papel ──────────────────────────────────────────────────── */
 /* 5 % de opacidad, fijo, sin capturar el ratón. Solo decorativo. */

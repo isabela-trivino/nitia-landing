@@ -368,15 +368,7 @@
 /* ── 8 · Lanzamiento ─────────────────────────────────────────────────── */
 .lanzamiento { background: var(--terracota); }
 /* Sobre las piedras, el único texto válido es el Carbón. Regla del brandbook. */
-.lanzamiento h2, .lanzamiento p, .lanzamiento label { color: var(--carbon); }
-/* El enlace del consentimiento también: en Petróleo sobre Terracota se queda
-   en 3,30:1 y no alcanza AA. En Carbón sube a 4,91:1, y el subrayado es lo
-   que lo sigue identificando como enlace sin recurrir al color. */
-/* `:not(.boton)` NO es un adorno. Sin él esta regla pisaba el color del
-   botón —que es un <a>— y dejaba el texto en Carbón sobre el Petróleo del
-   fondo: ilegible. El botón trae su propia tinta en la variable --tinta. */
-.lanzamiento a:not(.boton) { color: var(--carbon); text-decoration: underline; text-underline-offset: 3px; }
-.lanzamiento a:not(.boton):hover { color: var(--petroleo); text-decoration-thickness: 2px; }
+.lanzamiento h2, .lanzamiento p { color: var(--carbon); }
 .lanzamiento__reticula {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
@@ -437,36 +429,6 @@
 .lanzamiento .pildora { background: var(--crema); border-color: var(--velo-carbon-12); }
 .lanzamiento__lado { display: grid; gap: var(--e-4); justify-items: start; }
 @media (max-width: 900px) { .lanzamiento__lado { margin-top: var(--e-2); } }
-
-/* Lista de espera · oculta salvo en data-modo="waitlist" */
-.formulario { display: flex; flex-wrap: wrap; gap: var(--e-3); margin: var(--e-5) 0 var(--e-4); }
-.formulario input[type="email"] {
-  flex: 1 1 18rem;
-  max-width: 24rem;
-  min-height: 48px;
-  padding: var(--e-3) var(--e-4);
-  background: var(--crema);
-  border: 1px solid var(--velo-carbon-20);
-  border-radius: var(--r-sm);
-  transition: border-color var(--dur-media) var(--curva-salida),
-              box-shadow var(--dur-media) var(--curva-salida);
-}
-.formulario input[type="email"]:focus-visible {
-  border-color: var(--petroleo);
-  box-shadow: 0 0 0 3px var(--velo-petroleo-18);
-  outline: none;
-}
-.consentimiento {
-  display: flex;
-  gap: var(--e-3);
-  align-items: flex-start;
-  max-width: 34rem;
-  font-size: var(--t-sm);
-}
-/* 24 × 24: es el consentimiento legal, y era el objetivo más pequeño
-   de la página con 18 px. La etiqueta entera sigue siendo zona de toque. */
-.consentimiento input { width: 24px; height: 24px; margin-top: 1px; flex: none; }
-.consentimiento label { cursor: pointer; }
 
 /* ── 9 · Preguntas ───────────────────────────────────────────────────── */
 .preguntas__caja { max-width: 46rem; }
