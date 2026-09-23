@@ -1,16 +1,20 @@
 # ─────────────────────────────────────────────────────────────────────────
 #  Nítia · nitia.app  (marca con tilde; dominio registrado sin ella)
-#  Mientras la página esté en revisión del Cliente, NADA se indexa.
-#  Para publicar de verdad: comentar la línea Disallow de abajo y
-#  descomentar las dos que la siguen.
+#  Mientras la página esté en revisión, NADA se indexa.
+#
+#  AL PUBLICAR EN nitia.app: borrar la línea «Disallow: /» y dejar en su
+#  lugar «Allow: /». El archivo tiene que quedar así:
+#
+#      User-agent: *
+#      Allow: /
+#
+#      Sitemap: https://nitia.app/sitemap.xml
+#
+#  Las páginas legales NO se bloquean aquí: llevan su propia etiqueta
+#  noindex, y Google tiene que poder entrar para leerla.
 # ─────────────────────────────────────────────────────────────────────────
 
 User-agent: *
 Disallow: /
-
-# ── AL PUBLICAR, cambiar por esto ────────────────────────────────────────
-# User-agent: *
-# Allow: /
-# Disallow: /legal/
 
 Sitemap: https://nitia.app/sitemap.xml
