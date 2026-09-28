@@ -14,8 +14,9 @@
    Reglas que cumple este archivo:
    1. Modo de consentimiento v2 de Google, versión BÁSICA: todo empieza
       denegado y el código de Google NO se descarga hasta que hay un «sí».
-   2. Cookie de 13 meses contados desde la primera visita, sin prórroga
-      automática (criterio de la guía de la AEPD).
+   2. Cookies de 13 meses contados desde la primera visita, sin prórroga
+      automática (criterio de la guía de la AEPD). También _ga_<id>, que
+      Google reescribe en cada visita: ver segundosRestantes().
    3. Señales de Google solo si se acepta también la publicidad.
    4. Al retirar el consentimiento se borran las cookies de Google que ya
       estuvieran puestas y la página se recarga.
@@ -55,6 +56,20 @@
     };
   }
 
+  // ── Caducidad: 13 meses desde la PRIMERA visita, no desde la última ──
+  // _ga guarda la fecha de la primera visita (el último número de su valor,
+  // en segundos). Google reescribe _ga_<id> en cada visita nueva y, con un
+  // cookie_expires fijo, le daba otros 13 meses contados desde ese día
+  // (comprobado en la copia de pruebas el 25-09-2026: _ga seguía en su fecha
+  // y _ga_<id> se alargaba). Por eso se le pasa solo lo que QUEDA hasta el
+  // final de los 13 meses: así las dos cookies caducan el mismo día.
+  function segundosRestantes() {
+    var m = document.cookie.match(/(?:^|;\s*)_ga=GA\d+\.\d+\.\d+\.(\d+)/);
+    if (!m) return TRECE_MESES;                       // primera visita
+    var resto = parseInt(m[1], 10) + TRECE_MESES - Math.floor(Date.now() / 1000);
+    return resto > 0 ? resto : TRECE_MESES;
+  }
+
   function cargarGoogle(d) {
     cargado = true;
     gtag('consent', 'update', senales(d));
@@ -64,7 +79,7 @@
     document.head.appendChild(s);
     gtag('js', new Date());
     gtag('config', ID_GA4, {
-      cookie_expires: TRECE_MESES,
+      cookie_expires: segundosRestantes(),
       cookie_update: false,
       allow_google_signals: !!d.publicidad,
       allow_ad_personalization_signals: !!d.publicidad
